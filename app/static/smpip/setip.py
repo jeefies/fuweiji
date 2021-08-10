@@ -1,7 +1,7 @@
 from urllib import request as urlreq
 
 #urlreq.urlretrieve('http://0.0.0.0:5000/static/smpip/getip.py', '/home/pi/.getip.py')
-#urlreq.urlretrieve('http://fuweiji.pythonanywhere.com/static/smpip/getip.py', '/home/pi/.getip.py')
+urlreq.urlretrieve('http://fuweiji.pythonanywhere.com/static/smpip/getip.py', '/home/pi/.getip.py')
 
 content = b"""#!/bin/sh -e
 #
