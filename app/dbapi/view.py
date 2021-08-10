@@ -5,7 +5,7 @@ from flask import (url_for, flash, render_template,
                     redirect, session, send_file, jsonify, abort)
 from flask import (request as req,
                     make_response as mkrsp,
-                    Response as Rsp,
+                    Response as Rsp)
 
 @bp.route('/close')
 def closedb():
@@ -15,7 +15,8 @@ def closedb():
 @bp.route('/reopen')
 def reopendb():
     db.reopen()
+    return jsonify({'state': 200, 'info': 'success'})
 
 @bp.route('/all')
 def showdb():
-    return jsonify({k:db[k] for k in db.allkeys()})
+    return jsonify({k.decode():db[k].decode() for k in db.allkeys()})
