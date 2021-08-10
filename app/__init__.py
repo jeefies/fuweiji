@@ -16,4 +16,7 @@ def create_app(cfg):
     from .smp import bp as smp_bp
     app.register_blueprint(smp_bp, url_prefix='/smp')
 
+    from .dbapi import bp as dbapi_bp
+    app.register_blueprint(dbapi_bp, url_prefix= '/dbapi')
+
     return app

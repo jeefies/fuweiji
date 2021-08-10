@@ -16,6 +16,7 @@ _db_type_dict = {
 
 class DB:
     db = None
+    isopen = False
 
     def __init__(self, filename = None, mode = 0):
         if filename:
@@ -63,6 +64,7 @@ class DB:
     
         self.filename = filename
         self.__call__(db)
+        self.isopen = True
 
     @staticmethod
     def open(filename):
@@ -80,8 +82,12 @@ class DB:
             ks = db.keys()
         return ks
 
-    def close(db):
-        db.db.close()
+    def close(self):
+        self.isopen = False
+        self.db.close()
+
+    def reopen(self):
+        self.openf(self.filename)
     
     def sync(self):
         db = self.db
