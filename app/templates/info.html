@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+
+{% block title %}更多的信息{% endblock %}
+
+{% block style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+<div class="Content">
+	<script type="text/javascript" charset="utf-8">
+		function r(url) {
+			Redirect.RedirectToNewWindow(url);
+		}
+	</script>
+	<p>我现在只是一个初中生</p>
+	<p>就读于四川省成都市锦江师大一中</p>
+	<p>具体的年纪和班级就不说了,免得惹上什么大麻烦</p>
+	<br />
+	<p>本来我是想直接把我的一些些照片传上来</p>
+	<p>可是，我想到了几乎所以手机相机里都会在拍照的时候做一些小手脚</p>
+	<p>具体的可以参考exif，多的我就不说了</p>
+	<p>不过你要放心，这里的所有图片都是去除了exif的，别想多了</p>
+	<br />
+	<p>我啊，喜欢编程，不然也不可能做这些东西</p>
+	<p>顺便说说，这个网站托管在pythonanywhere之上，一个免费且可靠的网站</p>
+	<p>我还是蛮喜欢的，还可以在线上编程运行</p>
+	<p>有一些编程老手就应该会问:＂你有没有github帐号?＂</p>
+	<p>我说啊，我不仅有<span class='jump' onclick="r('https://github.com/jeefies')">github</span>帐号，<span class='jump' onclick="r('https://gitee.com/jeefy')">gitee</span>也没有漏下</p>
+	<p>我觉得我的得意之作就只有用各种不同的语言写出来的贪吃蛇了</p>
+	<p>不过我还是提醒一下，我的github帐号因为网络原因，已经有段时间没有使用了，所以</p>
+	<p>gitee之上才有我的最新的更新，包括这个网站的源代码也在上面</p>
+	<p>顺带一提，<span class='jump' onclick="r('https://jeefy2.pythonanywhere.com')">jeefy2.pythonanywhere.com</span>也是我的网站</p>
+	<p>源代码也是在gitee之上，只是已经写了有段时间，所以github上也有</p>
+</div>
+{% endblock %}

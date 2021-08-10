@@ -1,0 +1,10 @@
+*.swp
+*.swo
+*.pyc
+__pycache__
+*.json
+*.sqlite
+*.db
+*.bak
+*.dir
+*.dat

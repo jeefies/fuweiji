@@ -1,0 +1,15 @@
+p {
+	color: black;
+	font-size: 1.1em;
+}
+
+span.jump {
+	color: blue;
+	text-decoration: underline;
+	border-bottom: 1px dotted black;
+}
+
+p.small {
+	font-size: 0.9em;
+	color: darkgray;
+}
