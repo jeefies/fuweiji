@@ -20,3 +20,8 @@ def reopendb():
 @bp.route('/all')
 def showdb():
     return jsonify({k.decode():db[k].decode() for k in db.allkeys()})
+
+@bp.route('/clear')
+def cleardb():
+    db.clear()
+    return jsonify({'state': 200, 'info': 'success'})

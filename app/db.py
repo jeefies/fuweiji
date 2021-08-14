@@ -88,6 +88,10 @@ class DB:
 
     def reopen(self):
         self.openf(self.filename)
+
+    def clear(self):
+        for k in self.allkeys():
+            del self.db[k]
     
     def sync(self):
         db = self.db
