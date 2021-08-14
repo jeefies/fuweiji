@@ -9,4 +9,4 @@ from flask import (request as req,
 
 @bp.route('/')
 def index():
-    return render_template('info.html')
+    return render_template('info/info.html')

@@ -77,11 +77,10 @@ div.Page {
 
 div.NextPage {
 	position: absolute;
-	width: 5%;
+	width: 5vh;
+	height: 5vh;
 	max-width: 50px;
-	min-width: 30px;
 	max-height: 50px;
-	min-height: 20px;
 
 	top: 47.5%;
 	right: 2.5%;

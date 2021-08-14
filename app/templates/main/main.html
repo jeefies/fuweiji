@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block style %}
+{{ super() }}
+	<link rel="stylesheet" href="/static/css/main.css" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+<div class="Content">
+	<div class='Info'>
+		<div class="LInfo">
+			<div class='LPart1'>
+				<div class='InfoLeft'>
+					<img class="InfoLeft" src="{{ url_for('static', filename='images/myclear.png') }}" />
+				</div>
+				<div class="InfoRight">
+					<p>吾名付伟吉</p>
+					<p>来自四川，成都</p>
+					<p>为00后</p>
+					<p>生辰为<small> 农历 </small>六月十四</p>
+				</div>
+			</div>
+		</div>
+	
+		<div class="RInfo">
+			<h2>News</h2>
+			<p>我的树梅派<span id="smp">没有登录</span>  <small style="color: lightgray" onclick="Redirect.RedirectUrl('/smp/download')">自动登录脚本</small></p>
+		
+			<script type="text/javascript" charset="utf-8">
+				window.onload = function() {
+					console.log('Updating SMP IP DATA')
+					let ctt = document.getElementById('smp');
+					$.ajax({
+						type: 'get',
+						url: '/smp/ip',
+						contentType: "application/json;charset=UTF-8",
+						success: (result) => {
+							console.log(result);
+							if (result.ip != null) {
+								ctt.innerHTML = '登录在' + result.ip;
+							} else {
+								ctt.innerHTML = '没有登录';
+							}
+						},
+						error: (e) => {
+						ctt.innerHTML = '没有登录';
+				},
+					})
+				}
+			</script>
+		
+			<hr />
+
+			<h2></h2>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -18,7 +18,7 @@ from flask import (request as req,
 
 @bp.route('/')
 def index():
-    return render_template('main.html')
+    return render_template('main/main.html')
 
 @bp.route('/favicon.ico')
 def icon():
