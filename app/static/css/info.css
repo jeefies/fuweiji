@@ -87,6 +87,8 @@ div.NextPage {
 	transition: background-color 1s;
 	transition: top 1s;
 	border-radius: 30px;
+
+	background-origin: padding-box;
 }
 
 #right {

@@ -1,0 +1,41 @@
+body {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+}
+
+.Imgs {
+	display: flex;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 100vw;
+	height: 100vh;
+	flex-flow: column nowrap;
+
+	scroll-snap-type: y mandatory;
+	scroll-behavior: smooth;
+}
+
+div.Img {
+	width: 100vw;
+	height: 100vh;
+
+	scroll-snap-align: center;
+
+	text-align: center;
+	flex: none;
+}
+
+div.Img img {
+	max-height: 100vh;
+}
+
+#I2 > a {
+	text-decoration: none;
+
+	color: blue;
+}
+
+#I2 a:visited {
+	color: blue;
+}

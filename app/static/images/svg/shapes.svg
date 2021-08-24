@@ -1,0 +1,10 @@
+<svg width="450" height="800" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<!-- <polygon points="175 250, 75 350, 175 450" stroke="black" stroke-width="3" fill="transparent" /> -->
+	<!-- path中,大写表示绝对位置,小写表示相对位置(相对于上一个位置) -->
+	<!-- h 为水平 v 为竖直 -->
+	<!--     ( 画三角                      )( 画横线      )( 竖线          )(调位)( 右上曲线                 )( 过渡曲线       )-->
+	<path d="M 175 250 L 75 350 L 175 450 Z M 75 350 h 241 M 250 650 v -426 m 0 1 C 275 160, 370 250, 325 340 Q 322 347, 315 350" fill="transparent" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="bevel"/>
+
+	<!-- 最后的一点 -->
+	<circle cx="210" cy="485" r="4" fill="black" stroke="transparent" />
+</svg>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Click To Scroll Pages</title>
+		
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="/static/css/learn/clickToScrollPages.css" type="text/css" media="all" />
+	</head>
+	<body>
+		<div class="Pages">
+			<div class="Page" id="P1">
+				<p>First P</p>
+				<p href="#P2" class="A ne">Next</p>
+			</div>
+			<div class="Page" id="P2">
+				<p href="#P1" class="A pre">Previous</p>
+				<p>Second P</p>
+				<p href="#P3" class="A ne">Next</p>
+			</div>
+			<div class="Page" id="P3">
+				<p href="#P2" class="A pre">Previous</p>
+				<p>Last P</p>
+			</div>
+		</div>
+		<script type="text/javascript" charset="utf-8">
+			function bindc(a) {
+				a.onclick = () => {
+					// console.log(a);
+					let href = a.getAttribute('href');
+					// console.log(href);
+					let scrolli = document.getElementById(href.replace("#", ''));
+					// console.log(scrolli);
+					scrolli.scrollIntoView();
+				}
+			}
+			for (a of document.getElementsByClassName("A")) {
+				bindc(a);
+			}
+		</script>
+	</body>
+</html>

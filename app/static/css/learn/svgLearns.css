@@ -1,0 +1,46 @@
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+.Main {
+	display: flex;
+	flex-flow: column nowrap;
+
+	height: 100%;
+
+	overflow: auto;
+	overflow-x: hidden;
+
+	scroll-snap-type: y mandatory;
+	scroll-behavior: smooth;
+
+	text-align: center;
+}
+
+.Line {
+	display: flex;
+	flex-flow: row nowrap;
+
+	flex: none;
+
+	scroll-snap-align: start end;
+}
+
+.Image {
+	height: calc(20vw - 4px);
+	width: calc(20vw - 5px);
+
+	display: inline-block;
+
+	border: 2px dashed black;
+}
+
+.Image svg {
+	width: 100%;
+	height: 100%;
+}
+
+text {
+	font-size: 2vw;
+}

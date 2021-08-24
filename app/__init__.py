@@ -19,4 +19,7 @@ def create_app(cfg):
     from .dbapi import bp as dbapi_bp
     app.register_blueprint(dbapi_bp, url_prefix= '/dbapi')
 
+    from .cssLearn import bp as css_bp
+    app.register_blueprint(css_bp, url_prefix = '/css')
+
     return app
