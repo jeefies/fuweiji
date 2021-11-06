@@ -19,8 +19,10 @@
 		<nav class="NavUp">
 			{% block navin %}
 			<p class="LeftMain" onclick="Redirect.RedirectUrl('/')">Home</p>
-			<p class="Left" onclick="Redirect.RedirectUrl('/info')">MoreInfo</p>
-			<p class="Left" onclick="Redirect.RedirectUrl('/css')">CssLearn</p>
+			<div class="Lefts">
+				<p class="Left" onclick="Redirect.RedirectUrl('/info')">MoreInfo</p>
+				<p class="Left" onclick="Redirect.RedirectUrl('/css')">CssLearn</p>
+			</div>
 			{% endblock %}
 		</nav>
 		{% endblock %}
