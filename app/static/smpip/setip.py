@@ -1,31 +1,20 @@
 from urllib import request as urlreq
+from subprocess import call
 
 #urlreq.urlretrieve('http://0.0.0.0:5000/static/smpip/getip.py', '/home/pi/.getip.py')
 urlreq.urlretrieve('http://fuweiji.pythonanywhere.com/static/smpip/getip.py', '/home/pi/.getip.py')
 
-content = b"""#!/bin/sh -e
-#
-# rc.local
-#
-# This script is executed at the end of each multiuser runlevel.
-# Make sure that the script will "exit 0" on success or any other
-# value on error.
-#
-# In order to enable or disable this script just change the execution
-# bits.
-#
-# By default this script does nothing.
+content = b"""[Unit]
+Description=Smp Ip send
 
-# Print the IP address
-_IP=$(hostname -I) || true
-if [ "$_IP" ]; then
-  printf "My IP address is %s\n" "$_IP"
-fi
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/.getip.py
 
-sudo python /home/pi/.getip.py
-exit 0
+[Install]
+WantedBy=multi-user.target
 """
 
-with open('/etc/rc.local', 'wb') as f:
+with open("/etc/systemd/system/smpip.service", "wb") as f:
     f.write(content)
 
+call("sudo systemctl enable smpip.service")
