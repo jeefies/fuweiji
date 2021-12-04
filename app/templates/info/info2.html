@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}更多的信息{% endblock %}
+
+{% block style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="/static/js/info.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}
+
+{% block content %}
+<div class="Content">
+	<div class='Pages'>
+		<div class="Page" id='p1'>
+			<p>实际上，这一页才是真心话</p>
+			<p>原本的那一个，只是为了凑数罢了，给别人看</p>
+			<p>本来很想写些什么，但是，</p>
+			<p>落到笔头，便什么也没有了</p>
+		</div>
+	</div> <!-- Pages -->
+	<div class="NextPage" id='_nl'>
+		<img src="/static/images/arrow_left.bmp" alt="ArrowLeft" id='left'/>
+	</div>
+	<div class="NextPage" id='_nr'>
+		<img src="/static/images/arrow_right.bmp" alt="ArrowRight" id='right'/>
+	</div>
+</div>
+{% endblock %}

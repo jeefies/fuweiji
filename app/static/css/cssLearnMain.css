@@ -1,0 +1,47 @@
+html {
+	font-family: 'bubblegum';
+}
+
+body {
+	min-height: 100vh;
+	box-sizing: border-box;
+	margin: 0;
+	padding-top: 22vh;
+}
+
+body, .Centered::before {
+	background: url("/static/images/jpg/oceanBG.jpeg") 0 / cover fixed;
+}
+
+.Centered {
+	height: 56vh;
+	width: 50vw;
+	position: relative;
+	margin: 0 auto;
+
+	background: hsla(0, 0%, 100%, .25);
+	overflow: hidden;
+
+	text-align: center;
+	font-size: 2vw;
+}
+
+.Centered::before {
+	content: '';
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+
+	filter: blur(20px);
+	-webkit-filter: blur(20px);
+	margin: -30px;
+	z-index:-1;
+}
+
+.Centered a {
+	display: block;
+	margin-top: .5em;
+
+	color: black;
+	text-decoration: underline;
+	font-size: 1.5vw;
+}

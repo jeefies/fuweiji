@@ -1,5 +1,28 @@
-html, body {
-	height: 100%;
+body {
+	min-height: 100vh;
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.MainPage {
+	width: 10em;
+	position: absolute;
+	top: calc(50% - 10em);
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	text-align: center;
+
+	background: tan;
+	border-radius: .8em;
+	/* outline: .6em solid #655; */
+	box-shadow: 0 0 0 .6em #655;
+	padding: 1em;
+}
+
+.MainPage a {
+	font-size: 1.2em;
+	color: black;
 }
 
 .Pages {
@@ -11,7 +34,8 @@ html, body {
 	left: 50%;
 	transform: translate(-50%, -50%);
 
-	border: thin dashed lightgray;
+	border: 2px dashed lightgray;
+	outline: .6em solid #6552;
 
 	overflow: hidden;
 

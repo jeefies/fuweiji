@@ -7,7 +7,17 @@ from flask import (request as req,
                     Response as Rsp,
                 )
 
+pages = (
+        ('scrollpages', 'Scroll Pages'),
+        ('pagebtns', 'Scroll Pages By Buttons'), 
+        ('svgs', 'SVG Images'),
+    )
+
 @bp.route('/')
+def index():
+    return render_template('css/base.html', pages = pages)
+
+@bp.route('/scrollpages')
 def scrollPages():
     return render_template('css/scrollPages.html')
 
