@@ -7,9 +7,18 @@ let maxpage = 3;
 let pages = document.getElementsByClassName('Page');
 
 window.onload = function() {
-	$('#right').bind('animationend', () => {console.log('set a to 0.6'); $('#right').css('opacity', 0.6)});
-	$('#left').bind('animationend', () => {console.log('set a to 0.6');$('#left').css('opacity', 0.6)});
-	$('#p1').bind('animationend', () => {console.log('ctx set a to 1');$('#p1').css('opacity', 1)});
+	$('#right').bind('animationend', () => {
+		console.log('set a to 0.6'); 
+		$('#right').css('opacity', 0.6)
+	});
+	$('#left').bind('animationend', () => {
+		console.log('set a to 0.6');
+		$('#left').css('opacity', 0.6)
+	});
+	$('#p1').bind('animationend', () => {
+		console.log('ctx set a to 1');
+		$('#p1').css('opacity', 1)
+	});
 
 	let nextpagefunc = function(next) {
 		console.log('next page clicked', next)

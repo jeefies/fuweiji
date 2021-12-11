@@ -7,15 +7,36 @@ body {
 	box-sizing: border-box;
 	margin: 0;
 	padding-top: 22vh;
+
+	font-size: 1vw;
 }
 
 body, .Centered::before {
 	background: url("/static/images/jpg/oceanBG.jpeg") 0 / cover fixed;
 }
 
+@media (max-width: 1200px) {
+	body {
+		font-size: 1.7vw;
+	}
+	.Centered {
+		width: 60vw; /* here em is 4vw, because we set font-size: em==2vw above */
+	}
+}
+
+@media (max-width: 460px) {
+	body {
+		font-size: 2.5vw;
+	}
+	.Centered {
+		width: 75vw;
+	}
+}
+
 .Centered {
 	height: 56vh;
-	width: 50vw;
+	width: 50vw; /* here em is 2vw , because we set font-size: em==vw here*/
+	max-height: 66em;
 	position: relative;
 	margin: 0 auto;
 
@@ -23,7 +44,9 @@ body, .Centered::before {
 	overflow: hidden;
 
 	text-align: center;
-	font-size: 2vw;
+	font-size: 2em;
+
+	transition: font-size .4s;
 }
 
 .Centered::before {
@@ -43,5 +66,5 @@ body, .Centered::before {
 
 	color: black;
 	text-decoration: underline;
-	font-size: 1.5vw;
+	font-size: .75em; /* here em is 2vw, because parent .Centered set it to em=2em=2vw */
 }
