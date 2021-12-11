@@ -10,3 +10,7 @@ from flask import (request as req,
 @bp.route('/')
 def index():
     return render_template('info/info.html')
+
+@bp.route('/2')
+def hidden():
+    return render_template('info/info2.html')
