@@ -3,10 +3,13 @@ function r(url) {
 }
 
 let nowpage = 1;
-let maxpage = 3;
 let pages = document.getElementsByClassName('Page');
+let maxpage = 0;
 
 window.onload = function() {
+	maxpage = pages.length;
+	tidyPages();
+
 	$('#right').bind('animationend', () => {
 		console.log('set a to 0.6'); 
 		$('#right').css('opacity', 0.6)
@@ -39,7 +42,7 @@ window.onload = function() {
 		console.log('div.Page#p' + i);
 
 		nowpage += next;
-		if (nowpage == 1) {
+		if (nowpage <= 1) {
 			let ar = $('#right');
 			let al = $('#left');
 			ar.css('opacity', 0.6)
@@ -47,7 +50,9 @@ window.onload = function() {
 
 			al.css('opacity', 0)
 			$('#_nl').css('z-index', 5).css('top', '47.5%')
-		} else if (nowpage == maxpage) {
+
+			nowpage = 1
+		} else if (nowpage >= maxpage) {
 			let ar = $('#right');
 			let al = $('#left');
 			al.css('opacity', 0.6)
@@ -55,8 +60,9 @@ window.onload = function() {
 
 			ar.css('opacity', 0)
 			$('#_nr').css('z-index', 5).css('top', '47.5%')
+
+			nowpage = maxpage;
 		} else {
-			console.log('??')
 			let ar = $('#right').css('opacity', 0.6);
 			let al = $('#left').css('opacity', 0.6);
 
@@ -67,4 +73,31 @@ window.onload = function() {
 
 	$('#right').bind('click', () => nextpagefunc(1));
 	$('#left').bind('click', () => nextpagefunc(-1))
+}
+
+function tidyPages() {
+	for (let i = 0; i < maxpage; i++) {
+		console.log(pages[i].innerHTML);
+		tidyPage(i)
+	}
+}
+
+function tidyPage(i) {
+	console.log("Tidying")
+	let page = pages[i];
+	let ctx = page.innerHTML.trim();
+
+	ctx = ctx.split('\n').map((x) => x.trim()).join('\n');
+	console.log(ctx);
+	ctx = ctx.replace(/\n\n/g, '</p><br /><p>').split('\n')
+	console.log(ctx);
+	ctx = "<p>" + ctx.join("</p>\n<p>") + "</p>"
+	console.log(ctx);
+
+	ctx = ctx.replace(/\[(.*?)\]\((.*?)\)/g, "<span class='jump' onclick=\"r('$2')\">$1</span>")
+	ctx = ctx.replace(/\((.*?)\)\[(.*?)\]/g, "<span class='jump' onclick=\"r('$1')\">$2</span>")
+	console.log(ctx);
+
+	page.innerHTML = ctx;
+
 }
