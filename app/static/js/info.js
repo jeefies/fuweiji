@@ -87,12 +87,19 @@ function tidyPage(i) {
 	let page = pages[i];
 	let ctx = page.innerHTML.trim();
 
+	// Replace all lines
 	ctx = ctx.split('\n').map((x) => x.trim()).join('\n');
-	console.log(ctx);
 	ctx = ctx.replace(/\n\n/g, '</p><br /><p>').split('\n')
-	console.log(ctx);
 	ctx = "<p>" + ctx.join("</p>\n<p>") + "</p>"
-	console.log(ctx);
+
+	// Add quoted contents
+	let octx  = ctx.split('<p>"""</p>')
+	ctx =  octx[0]
+	let sep = ["<div class='quoted'>", "</div>"]
+	for (let i = 1; i < octx.length; i++) {
+		console.log(i)
+		ctx += sep[(i - 1) % 2] + octx[i]
+	}
 
 	ctx = ctx.replace(/\[(.*?)\]\((.*?)\)/g, "<span class='jump' onclick=\"r('$2')\">$1</span>")
 	ctx = ctx.replace(/\((.*?)\)\[(.*?)\]/g, "<span class='jump' onclick=\"r('$1')\">$2</span>")
