@@ -1,0 +1,3 @@
+[submodule "app/_chencode"]
+	path = app/_chencode
+	url = https://github.com/jeefies/chencode.git

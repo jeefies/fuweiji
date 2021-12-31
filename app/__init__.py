@@ -22,4 +22,7 @@ def create_app(cfg):
     from .cssLearn import bp as css_bp
     app.register_blueprint(css_bp, url_prefix = '/css')
 
+    from .chencode import bp as chcode_bp
+    app.register_blueprint(chcode_bp, url_prefix = '/ch-code')
+
     return app
