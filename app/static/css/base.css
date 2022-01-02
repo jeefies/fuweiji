@@ -12,6 +12,25 @@ div.Content {
 
 nav.NavUp {
 	background-color: black;
+	font-size: 1.3vw;
+}
+
+@media (max-width: 1000px) {
+	nav.NavUp {
+		font-size: 1.8vw;
+	}
+}
+
+@media (max-width: 800px) {
+	nav.NavUp {
+		font-size: 2.3vw;
+	}
+}
+
+@media (max-width: 460px) {
+	nav.NavUp {
+		font-size: 2.5vw;
+	}
 }
 
 nav.NavUp p {
@@ -19,15 +38,18 @@ nav.NavUp p {
 	display: inline;
 	margin: 1em;
 	border: 0px;
+
+	transition: font-size .3s;
 }
 
 nav.NavUp p.LeftMain {
-	font-size: 2.4rem;
-	border-top: 1rem;
-	margin-left: 1rem;
-	margin-bottom: 0.2rem;
+	font-size: 2.4em;
+	border-top: 1em;
+	margin-left: 1em;
+	margin-bottom: 0.2em;
 	margin-right: 0px;
 	display: inline;
+	transition: font-size .3s;
 }
 
 div.Lefts {
@@ -37,7 +59,7 @@ div.Lefts {
 }
 
 div.Lefts p.Left {
-	font-size: 1.8rem;
+	font-size: 1.8em;
 	margin-right: 0em;
 	display: inline;
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>小付付 - Chencode</title>	
+		<link rel="stylesheet" href="https://unpkg.com/layui@2.6.8/dist/css/layui.css" type="text/css" />
+		<link rel="stylesheet" href="/static/fonts/font.css" type="text/css" media="all" />
+		<script src="//unpkg.com/layui@2.6.8/dist/layui.js" ></script>
+	</head>
+	<body>
+	<ul class="layui-nav">
+		<li class="layui-nav-item">
+			<a href="/ch-code/">Chencode</a>
+		</li>
+	</ul>
+	<br />
+	<main style="width:90%;padding-top:2em;padding-left:5%;border:0">
+		<h1 class="layui-font-green">chencode 线上使用</h1>
+		<form action="result" method="post" class="layui-form">
+			<div class="layui-form-item">
+					<textarea name="ctx" class="layui-textarea" id="content" required lay-verify="required" placeholder="在这里输入内容哦^_^" rows=15></textarea>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-form-label">
+					方法
+				</div>
+				<div class="layui-input-block">
+					<input type="radio" name="code" value="en" title="加密(encode)" checked>
+					<input type="radio" name="code" value="de" title="解密(decode)">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</form>
+	</main>
+
+	<script type="text/javascript" charset="utf-8">
+		layui.use("element", function() {
+			let element = layui.element;
+					element.on('nav(demo)', function(elem){
+				layer.msg(elem.text());
+			});
+		})
+	</script>
+	</body>
+</html>

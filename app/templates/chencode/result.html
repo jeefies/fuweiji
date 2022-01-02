@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>小付付 - chenode - result</title>
+		
+		<link rel="stylesheet" href="https://unpkg.com/layui@2.6.8/dist/css/layui.css" type="text/css" />
+		<script src="//unpkg.com/layui@2.6.8/dist/layui.js" ></script>
+	</head>
+	<body>
+
+	<ul class="layui-nav">
+		<li class="layui-nav-item">
+			<a href="/ch-code/">Chencode</a>
+		</li>
+	</ul>
+	<main style="width:90%;padding-top:2em;padding-left:5%;border:0">
+		<table class="layui-table">
+			<colgroup>
+				<col />
+				<col />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>原数据</th>
+					<th>加密数据</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>{{ origin }}</th>
+					<th>{{ secret }}</th>
+				</tr>
+			</tbody>
+		</table>
+	</main>
+	</body>
+</html>
