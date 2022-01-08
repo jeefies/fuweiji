@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>小付付 - ImData</title>	
+		<link rel="stylesheet" href="https://unpkg.com/layui@2.6.8/dist/css/layui.css" type="text/css" />
+		<link rel="stylesheet" href="/static/fonts/font.css" type="text/css" media="all" />
+		<script src="//unpkg.com/layui@2.6.8/dist/layui.js" ></script>
+		<style type="text/css" media="all">
+.file-input {
+     	padding: 4px 10px;
+	height: 20px;
+	line-height: 20px;
+	position: relative;
+	cursor: pointer;
+	color: #888;
+	background: #fafafa;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	overflow: hidden;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1
+}
+	
+.file-input input {
+	position: absolute;
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+    	filter: alpha(opacity=0);
+	cursor: pointer
+}
+	
+.file-input:hover {
+	color: #444;
+	background: #eee;
+	border-color: #ccc;
+	text-decoration: none
+}
+		</style>
+	</head>
+	<body>
+	<ul class="layui-nav">
+		<li class="layui-nav-item layui-this">
+			<a href="/ch-code/">ImData</a>
+		</li>
+		<li class="layui-nav-item"><a href="/ch-code">Chencode</a></li>
+	</ul>
+	<br />
+	<main style="width:90%;padding-top:2em;padding-left:5%;border:0">
+		<h1 class="layui-font-green">ImData线上api</h1>
+
+		<fieldset class="layui-elem-field layui-field-title">
+			<legend>加密数据</legend>
+		</fieldset>
+
+		<div class="layui-form" action='' method="post">
+			<div class="layui-form-item">
+				<label class="layui-form-label">数据类型</label>
+				<div class="layui-input-block">
+					<input type="radio" name="method" value=1 title="压缩数据" checked />
+					<input type="radio" name="method" value=2 title="Chencode集成" />
+					<!--
+					<input class="layui-input" type="radio" name="method" value=1 title="压缩数据" checked />
+					<input class="layui-input" type="radio" name="method" value=2 title="Chencode集成" />
+					-->
+				</div>
+			</div>
+
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">数据</label>
+				<div class="layui-input-block">
+					<textarea class="layui-textarea" name="ctx" rows="10" placeholder="请在这里输入内容哦^_^"></textarea>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">文件</label>
+				<div class="layui-input-block">
+					<div class="file-input">
+						<input class="layui-input" type="file" name="file" value="上传文件" id="upFile">
+						上传文件
+						</input>
+					</div>
+					<span id="uploadFileNameField"></span>
+				</div>
+				<blockquote class="layui-elem-quote layui-quote-nm">
+					上传了文件，就不会使用输入的数据了！
+				</blockquote>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button type="submit" class="layui-btn" lay-submit lay-filter="form">获取加密图像</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</div> <!-- layui-form end -->
+	</main>
+
+	<script type="text/javascript" charset="utf-8">
+		layui.use(["form", "element"], function() {
+			let element = layui.element;
+			let $ = layui.jquery;
+			element.on('nav(demo)', function(elem){
+				layer.msg(elem.text());
+			});
+
+			let form = layui.form;
+			form.on("submit(form)", function(data) {
+				let field = data.field;
+				let filedata = $("#upFile");
+
+
+				let updata = { 'method' : field['method'] };
+				if (field['file'] != null) {
+					let file = filedata.prop('files');
+					updata["file"] = file[0];
+				} else {
+					updata["ctx"] = field['ctx'];
+				}
+
+				$.post('/imdata/encode', updata, function(result) {
+					console.log(result);
+					console.log(typeof(result));
+				})
+				return false;
+			})
+		})
+	</script>
+	</body>
+</html>

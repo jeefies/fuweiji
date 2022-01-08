@@ -25,4 +25,7 @@ def create_app(cfg):
     from .chencode import bp as chcode_bp
     app.register_blueprint(chcode_bp, url_prefix = '/ch-code')
 
+    from .imdata import bp as imdata_bp
+    app.register_blueprint(imdata_bp, url_prefix = '/imdata')
+
     return app

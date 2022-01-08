@@ -10,9 +10,9 @@
 	</head>
 	<body>
 	<ul class="layui-nav">
-		<li class="layui-nav-item">
+		<li class="layui-nav-item layui-this">
 			<a href="/ch-code/">Chencode</a>
-		</li>
+		</li><li class="layui-nav-item"><a href="/imdata">ImData</a></li>
 	</ul>
 	<br />
 	<main style="width:90%;padding-top:2em;padding-left:5%;border:0">
@@ -23,9 +23,9 @@
 			</div>
 
 			<div class="layui-form-item">
-				<div class="layui-form-label">
+				<label class="layui-form-label">
 					方法
-				</div>
+				</label>
 				<div class="layui-input-block">
 					<input type="radio" name="code" value="en" title="加密(encode)" checked>
 					<input type="radio" name="code" value="de" title="解密(decode)">
@@ -34,7 +34,7 @@
 
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="formDemo">处理数据</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 	</main>
 
 	<script type="text/javascript" charset="utf-8">
-		layui.use("element", function() {
+		layui.use(["form", "element"], function() {
 			let element = layui.element;
 					element.on('nav(demo)', function(elem){
 				layer.msg(elem.text());
