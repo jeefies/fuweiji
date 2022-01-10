@@ -33,7 +33,7 @@ def result():
             sec = ccd.encode(ctx)
             ori = ctx
         except Exception as e:
-            return render_templace("error.html", e = str(e))
+            return render_template("error.html", e = str(e))
     elif code == 'de':
         try:
             sec = ctx
