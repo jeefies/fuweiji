@@ -4,3 +4,5 @@
 [submodule "app/_imdata"]
 	path = app/_imdata
 	url = git@github.com:jeefies/imdata.git
+[submodule "_imdata/"]
+	url = https://github.com/jeefies/imdata.git
