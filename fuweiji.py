@@ -7,6 +7,7 @@ app = create_app(os.getenv("FLASK_CONFIG", 'default'))
 def make():
     return dict(app = app)
 
+
 @app.cli.command()
 def Command():
     "A simple test command"
