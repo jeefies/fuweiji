@@ -21,10 +21,10 @@ def encode():
     # curl 127.0.0.1:5000/imdata/encode --data ctx="something here" -o data.bmp
     # curl 127.0.0.1:5000/imdata/encode --form file=@filename -o data.bmp
 
-    file = req.files.get("file", None)
+    file = req.files.get("file")
     print(req.files, req.values, req.values.keys(),sep='\n\n')
     if not file:
-        file = req.values.get("ctx", None)
+        file = req.values.get("ctx", req.values.get("file", None))
     else:
         file = file.read()
 
@@ -48,7 +48,7 @@ def decode():
 
     file = req.files.get("file", None)
     if not file:
-        file = req.values.get("ctx", None)
+        file = req.values.get("ctx", req.values.get("file", None))
     else:
         file = file.read()
 
