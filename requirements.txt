@@ -1,3 +1,8 @@
 flask
-imdata
+flask-compress
+
+# for chencode
+pypinyin
+# for imdata
+imageio
 # python3-gdbm

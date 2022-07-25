@@ -1,0 +1,25 @@
+{% extends "code-base.html" %}
+
+{% block title %}Download{% endblock %}
+
+{% block main %}
+	<h1 class="layui-font-green">ImData</h1>
+	{% if use_file %}
+	<div class="layui-card">
+		<div class="layui-card-header">温馨提示</div>
+		<div class="layui-card-body">由于文件中存在无法显示的字符<br>
+			所以，将以文件形式呈现
+		</div>
+	</div>
+	<a class="layui-btn" href="{{ url }}">点击下载</a>
+	{% else %}
+	<div class="layui-card">
+		<div class="layui-card-header">温馨提示</div>
+		<div class="layui-card-body">
+			如果想要下载，请点击最下面的链接<br>
+		</div>
+	</div>
+	<textarea class="layui-textarea" rows=10 readonly>{{ origin }}</textarea>
+	<a class="layui-btn" href="{{ url }}">点击下载</a>
+	{% endif %}
+{% endblock main%}

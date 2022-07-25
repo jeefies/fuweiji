@@ -25,6 +25,7 @@ def decode():
 def result():
     ctx = req.values.get("ctx", '').strip()
     code = req.values.get("code")
+    # print(ctx, code)
 
     sec = None
     ori = None
@@ -37,7 +38,7 @@ def result():
     elif code == 'de':
         try:
             sec = ctx
-            ori = ''.join(ccd.decode(ctx))
+            ori = ' '.join(ccd.decode(ctx))
         except Exception as e:
             return render_template('error.html', e = str(e))
     return render_template("chencode/result.html", origin = ori, secret = sec)

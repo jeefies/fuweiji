@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>{% block title %}{% endblock %}</title>
+
+	{% block style %}
+	<link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css">
+	<style type="text/css" media="all">
+@media only screen and (max-width: 1000px) {
+	layui-main {
+		width: 90vw;
+	}
+}
+	main {
+		width : 100vw;
+	}
+	</style>
+	{% endblock style %}
+
+	{% block headscript %}
+
+	{% endblock headscript%}
+
+</head>
+<body>
+ 
+	{% block body %}
+	<div class="main">
+		{% block nav %}
+		<ul class="layui-nav layui-bg-cyan" filter="">
+			<li class="layui-nav-item layui-this"><a href="/">Jeefy</a></li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">数据处理</a>
+				<dl class="layui-nav-child">
+					<dd><a href="/ch-code">chEncode</a></dd>
+					<dd><a href="/imdata">ImData</a></dd>
+				</dl>
+			</li>
+			<!-- <li class="layui-nav-item"><a href="">大数据</a></li> -->
+		</ul>
+		{% endblock nav %}
+		<div class="layui-main">
+			{% block main %}
+			{% endblock main %}
+		</div>
+	</div>
+	{% endblock body %}
+ 
+	{% block script %}
+	<script src="https://www.layuicdn.com/layui/layui.js"></script>
+	{% endblock script %}
+
+	<script defer>
+	{% block lastscript %}
+	layui.use(['layer', 'form', 'element'], function(){
+		var layer = layui.layer;
+		var form = layui.form;
+		var element = layui.element;
+	
+	});
+	{% endblock lastscript %}
+	</script> 
+</body>
+</html>

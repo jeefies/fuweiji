@@ -2,24 +2,15 @@
 {% block title %}chenode - result{% endblock title %}
 		
 {% block main %}
-<table class="layui-table">
-	<colgroup>
-		<col />
-		<col />
-	</colgroup>
-	<thead>
-		<tr>
-			<th>原数据</th>
-			<th>加密数据</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th>{{ origin }}</th>
-			<th>{{ secret }}</th>
-		</tr>
-	</tbody>
-</table>
-
+<div class="layui-collapse">
+	<div class="layui-colla-item">
+		<h2 class="layui-colla-title">原始数据</h2>
+		<div class="layui-colla-content layui-show">{{ origin }}</div>
+	</div>
+	<div class="layui-colla-item layui-show">
+		<h2 class="layui-colla-title">加密数据</h2>
+		<div class="layui-colla-content layui-show" style="word-break: break-all;">{{ secret }}</div>
+	</div>
+</div>
 <button class="layui-btn" onclick="location.replace('/ch-code')">返回</button>
 {% endblock main%}

@@ -2,12 +2,12 @@
 
 {% block title %}imdata{% endblock %}
 
-{% block script %}
-{{ super() }}
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% block headscript %}
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 {% endblock %}
 
 {% block style %}
+{{ super()  }}
 <style type="text/css" media="all">
 .file-input {
    	padding: 4px 10px;
@@ -62,7 +62,8 @@
 		<legend>加密数据</legend>
 	</fieldset>
 
-	<div class="layui-form" action='' method="post" id="mainForm">
+	<form class="layui-form" action='handle' method="POST" enctype="multipart/form-data">
+		<input class="layui-hide" name="operation" value="encode" />
 		<div class="layui-form-item">
 			<label class="layui-form-label">数据类型</label>
 			<div class="layui-input-block">
@@ -103,61 +104,72 @@
 				<button type="reset" class="layui-btn layui-btn-primary" id="resetBtn">重置</button>
 			</div>
 		</div>
-	</div> <!-- layui-form end -->
+	</form> <!-- layui-form end -->
+
+	<fieldset class="layui-elem-field layui-field-title">
+		<legend>解密数据</legend>
+	</fieldset>
+
+	<form class="layui-form" action='handle' method="POST" enctype="multipart/form-data">
+		<input class="layui-hide" name="operation" value="decode" />
+		<div class="layui-form-item">
+			<label class="layui-form-label">文件</label>
+			<div class="layui-input-block">
+				<div class="file-input">
+					<input class="layui-input" type="file" name="file" value="上传文件" id="upFile2">
+					上传文件
+					</input>
+				</div>
+				<div id="uploadFileNameField2"></div>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button type="submit" class="layui-btn" lay-submit lay-filter="form">获取原数据</button>
+				<button type="reset" class="layui-btn layui-btn-primary" id="resetBtn">重置</button>
+			</div>
+		</div>
+	</form> <!-- layui-form end -->
 {% endblock %}
 
 {% block lastscript %}
 
-function download(result) {
-	let blob = new Blob([result]);
-	let a = document.createElement("a");
-	document.body.appendChild(a);
-	a.href = URL.createObjectURL(blob);
-	a.download = 'data.bmp';
-	a.click();
-	document.body.removeChild(a);
-}
-
-function send_data(data) {
-	let field = data.field;
-	let filedata = $("#upFile");
-	let upd = { 'method' : field['method'] };
-
-	// upd.append('method', field['method']);
-	if (field['file'] == null) {
-		// upd.append("ctx", field['ctx']);
-		upd['ctx'] = field['ctx']
-		$.post('/imdata/encode', upd, download);
-	} else {
-		// upd.append("file", filedata.prop("files")[0]);
-		let f = filedata.prop("files")[0];
-		
-		let reader = new FileReader();
-		reader.readAsBinaryString(f);
-		reader.onload = function(e) {
-			upd['file'] = reader.result;
-			$.post('/imdata/encode', upd, download);
-		}
-	}
-
-}
-
 $("#upFile").bind("change", function() {
+	console.log("File Upload");
 	let name = $("#upFile").prop("files")[0].name;
 	$("#uploadFileNameField").html(name);
 } )
 
-layui.use(["form", "element"], function() {
-	let element = layui.element;
-	element.on('nav(demo)', function(elem){
-		layer.msg(elem.text());
-	});
 
+$("#upFile2").bind("change", function() {
+	console.log("File Upload");
+	let name = $("#upFile2").prop("files")[0].name;
+	$("#uploadFileNameField2").html(name);
+} )
+
+{% if message %}
+let message = "{{ message }}";
+let showMessage = true;
+{% else %}
+let message = "";
+let showMessage = false;
+{% endif %}
+
+layui.use(["form", "element", "layer"], function() {
+	let element = layui.element;
 	let form = layui.form;
-	form.on("submit(form)", function(data) {
-		send_data(data);
-		$("resetBtn").click();
-		return false;
-	})
+	let layer = layui.layer;
+	if (showMessage) {
+		layer.open({
+			title: '错误',
+			content: message,
+			icon: 4,
+			end: function() {
+				location.replace(location.pathname);
+			}
+		})
+		console.log("Open ok");
+	}
 })
 {% endblock lastscript %}

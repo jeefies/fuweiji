@@ -1,3 +1,6 @@
+import io
+from urllib.parse import urlencode
+
 from .bp import bp
 
 from flask import (url_for, flash, render_template,
@@ -7,13 +10,69 @@ from flask import ( request as req,
         Response as Rsp,
         )
 
-import io
-
 from .._imdata import ImData
 
 @bp.route('/')
 def index():
-    return render_template('imdata/index.html')
+    message = req.args.get("message", None)
+    return render_template('imdata/index.html', message = message)
+
+@bp.route('/handle', methods = ["GET", "POST"])
+def handle():
+    operation = req.values.get("operation")
+
+    method = req.values.get("method")
+
+    data = req.files.get("file")
+    if not data:
+        data = req.values.get("ctx", req.values.get("file", None))
+    else:
+        data = data.read()
+
+    # print("data:", data)
+    print("method:", method)
+    print(req.files, req.values, req.values.keys(), sep='\n\n')
+
+    if operation == 'decode':
+        imdata = ImData()
+        imdata.read(imdata.to_bytes(data))
+
+        urlbase = "/imdata/download?"
+        params = urlencode({"file" : imdata.content})
+
+        try:
+            origin = imdata.to_string(imdata.content)
+            use_file = False
+        except:
+            origin = imdata.content
+            use_file = True
+
+        return render_template("imdata/origin.html", origin = origin, use_file = use_file, url = urlbase + params)
+
+    if not data:
+        return redirect(url_for(".index") + "?message=没有内容输入！")
+    if method == '1':
+        # 压缩数据
+        ctt = io.BytesIO()
+        ImData(data).save(ctt)
+        # must, or can't send
+        ctt.seek(0)
+        # send_file(filename_or_fp, mimetype=None, as_attachment=False, attachment_filename=None, add_etags=True, cache_timeout=None, conditional=False)
+        return send_file(ctt, "image/bmp", True, "data.bmp")
+    elif method == '2':
+        # Chencode集成
+        return redirect(url_for('.index') + "?message=暂不支持ChEncode集成")
+    else:
+        # 错误方法
+        abort(400)
+    return "Fuck you"
+
+@bp.route('/download')
+def download():
+    file = io.BytesIO(req.values.get("file").encode())
+    file.seek(0)
+    # print(req.files, req.values, req.values.keys(), sep='\n')
+    return send_file(file, "plain/text", True, "data.txt")
 
 @bp.route('/encode', methods=["GET", "POST"])
 def encode():
