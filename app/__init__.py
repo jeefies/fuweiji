@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_compress import Compress
+from flask_cors import CORS
 
 from .config import config
 
 compress = Compress()
+cors = CORS()
 
 def create_app(cfg):
     print(cfg)
@@ -11,6 +13,7 @@ def create_app(cfg):
     app.config.from_object(config[cfg])
     config[cfg].init_app(app)
     compress.init_app(app)
+    cors.init_app(app)
 
     from .main import bp as main_bp
     app.register_blueprint(main_bp, url_prefix="/")
